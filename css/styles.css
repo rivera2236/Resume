@@ -30,6 +30,9 @@ a:hover {
   padding: 10px;
   position: fixed;
   text-align: center;
+  border: 0 solid;
+  box-shadow: 0px 5px 12px black;
+  z-index: 1;
 }
 .nav {
   display: flex;
@@ -64,6 +67,8 @@ header {
   background-size: cover;
   overflow: hidden;
   padding-top: 60px;
+  border: 0 solid;
+  box-shadow: 0px 8px 12px black;
 }
 .header{
   background: url('../images/desk_work.jpg') no-repeat top center ;
@@ -105,7 +110,7 @@ header .profile-image:hover {
   border-radius: 6px;
 }
 .card:hover {
-  border-color: #ff99ff;
+  border-color: tomato;
 }
 
 ul.skills {
@@ -129,12 +134,11 @@ ul.skills {
 footer {
   width: 100%;
   min-height: 30px;
-  padding: 20px 0 40px 20px;
+  padding: 20px 0 40px ;
 }
 
 footer .copyright {
   top: -8px;
-  margin-right: 20px;
   font-size: .75em;
 }
 
@@ -151,7 +155,6 @@ footer ul li {
 a.social {
   display: inline-block;
   text-indent: -9999px;
-  margin-left: 5px;
   width: 30px;
   height: 30px;
   background-size: 30px 30px;
@@ -174,6 +177,13 @@ a.social:hover {
   clear: both;
 }
 
+.photo-header{
+  background-image: none;
+  box-shadow: none;
+}
+div.wrapper{
+  padding-bottom: 55px;
+}
 /* Styles for larger screens */
 @media screen and (min-width: 720px) {
 
@@ -182,6 +192,7 @@ a.social:hover {
       max-width: 1200px;
       justify-content: space-around;
       margin: 0 auto;
+      padding: 0;
   }
 
   header {
@@ -214,22 +225,6 @@ a.social:hover {
 
 }
 
-/**************
-
-Style for the Practice Page
-
-Wrap the body’s contents(wrap the header + section not the footer) using a <div>
-Give <div> a class=”wrapper”
-     In CSS give .wrapper { min-height: 100vh; }
-     vh - viewport height
-     100vh - 100% of the viewing screen
-Figer out using “chrome developer tools” the total height of the footer
-Subtract footer height from 100vh using:
-min-height: calc(100vh - x);
-
-
- **************/
-
 section {
     height: 200px;
     width: 500px;
@@ -238,3 +233,210 @@ section {
     clear: both;
     display: inline-block;
 }
+
+/************************* POLAROIDS */
+
+.wrapper {
+  width: 100%;
+  padding: 0 2rem;
+  text-align: center;
+}
+.polaroid {
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,0.2);
+  
+}
+.polaroid > img{
+  max-width: 100%;
+  height: auto;
+}
+.caption {
+  font-size: 100%;
+  text-align: center;
+  line-height: 2em;
+}
+.item {
+  width: 50%;
+  display: inline-block;
+  margin-top: 2rem;
+  filter: grayscale(100%);
+}
+.item .polaroid:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  transition: all 0.35s;
+}
+.item:nth-of-type(4n+1) {
+  transform: scale(0.8, 0.8) rotate(5deg);
+  transition: all 0.35s;
+}
+.item:nth-of-type(4n+1) .polaroid:before {
+  transform: rotate(6deg);
+  height: 20%;
+  width: 47%;
+  bottom: 30px;
+  right: 12px;
+  box-shadow: 0 2.1rem 2rem rgba(0,0,0,0.4);
+}
+.item:nth-of-type(4n+2) {
+  transform: scale(0.8, 0.8) rotate(-5deg);
+  transition: all 0.35s;
+}
+.item:nth-of-type(4n+2) .polaroid:before {
+  transform: rotate(-6deg);
+  height: 20%;
+  width: 47%;
+  bottom: 30px;
+  left: 12px;
+  box-shadow: 0 2.1rem 2rem rgba(0,0,0,0.4);
+}
+.item:nth-of-type(4n+4) {
+  transform: scale(0.8, 0.8) rotate(3deg);
+  transition: all 0.35s;
+}
+.item:nth-of-type(4n+4) .polaroid:before {
+  transform: rotate(4deg);
+  height: 20%;
+  width: 47%;
+  bottom: 30px;
+  right: 12px;
+  box-shadow: 0 2.1rem 2rem rgba(0,0,0,0.3);
+}
+.item:nth-of-type(4n+3) {
+  transform: scale(0.8, 0.8) rotate(-3deg);
+  transition: all 0.35s;
+}
+.item:nth-of-type(4n+3) .polaroid:before {
+  transform: rotate(-4deg);
+  height: 20%;
+  width: 47%;
+  bottom: 30px;
+  left: 12px;
+  box-shadow: 0 2.1rem 2rem rgba(0,0,0,0.3);
+}
+.item:hover {
+  filter: none;
+  transform: scale(1, 1) rotate(0deg) !important;
+  transition: all 0.35s;
+}
+.item:hover .polaroid:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  transform: rotate(0deg);
+  height: 90%;
+  width: 90%;
+  bottom: 0%;
+  right: 5%;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.2);
+  transition: all 0.35s;
+}
+  
+
+p.location{
+  margin-top: 0px;
+}   
+/* AFTER SCREEN SIZE IS SMALLER THAN 720PX RESIZE POLAROIDS*/
+@media screen and (min-width: 720px) {
+  .item {
+    width: 30%;
+  }
+
+  .caption {
+    font-size: 1.8rem;
+  }
+
+  p.location{
+    margin-top: 10px;  
+  } 
+}
+
+/**********************************  */
+
+.scene {
+  width: 200px;
+  height: 200px;
+  perspective: 600px;
+  margin: auto;
+  margin-top: 10%;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 15s ease-in-out;
+}
+
+/*--  CUBE ANIMATION HERE  */
+
+@keyframes spin {
+  from { transform: rotateY(0); }
+  to { transform: rotateY(360deg); }
+}
+
+.cube {
+  animation: spin 7s infinite linear;
+}
+
+/*----------------------    */
+.cube__face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: gray;
+}
+
+.cube__face--back {
+  background-image: url("../images/placeimg_200_220_tech (1).jpg");
+}
+.cube__face--right {
+  background-image: url("../images/placeimg_200_220_tech (2).jpg");
+}
+.cube__face--front {
+  background-image: url("../images/placeimg_200_220_tech (3).jpg");
+}
+.cube__face--left {
+  background-image: url("../images/placeimg_200_220_tech (4).jpg");
+}
+.cube__face--top {
+  background-image: url("../images/placeimg_200_220_tech (5).jpg");
+}
+.cube__face--bottom {
+  background-image: url("../images/placeimg_200_220_tech.jpg");
+}
+
+
+
+.cube__face--front  { transform: rotateY(  0deg); }
+.cube__face--right  { transform: rotateY( 90deg); }
+.cube__face--back   { transform: rotateY(180deg); }
+.cube__face--left   { transform: rotateY(-90deg); }
+.cube__face--top    { transform: rotateX( 90deg); }
+.cube__face--bottom { transform: rotateX(-90deg); }
+
+.cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
+.cube__face--right  { transform: rotateY( 90deg) translateZ(100px); }
+.cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
+.cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
+.cube__face--top    { transform: rotateX( 90deg) translateZ(100px); }
+.cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+
+/******************************************************************  */
+
+.scene:hover {
+ height: 180px;
+ opacity: 0;
+ -webkit-transition: all 1s ease;
+ transition: all 1s ease; /* Transition when the mouse enters the element */
+}
+
+.scene {
+  -webkit-transition: opacity 1.5s ease;
+  transition: opacity 1.5s ease; /* Transition when the mouse leaves the element */
+}
+
